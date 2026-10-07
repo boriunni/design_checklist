@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>디자인 업무 실행 가이드</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --bg:#f5f4fa; --surface:#ffffff; --ink:#1e1b2e; --sub:#625f7a; --line:#dedcee;
+  --accent:#4f3fb3; --accent-soft:#ece9fa;
+  --must:#b0372b; --must-soft:#fbe9e6;
+  --dir:#8a5a12; --dir-soft:#fbf1dc;
+  --pref:#1f7557; --pref-soft:#e2f4ed;
+  --font:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#13111d; --surface:#1c1a2b; --ink:#ebe9f6; --sub:#a29fba; --line:#302d47;
+    --accent:#a99cf5; --accent-soft:#2a2550;
+    --must:#f19a8f; --must-soft:#3d1f1c;
+    --dir:#e6b862; --dir-soft:#3a2f17;
+    --pref:#6fd1ab; --pref-soft:#173326;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+.layout{max-width:1080px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px}
+header.hero{grid-column:1/-1;padding:56px 0 24px}
+.hero .ver{display:inline-block;background:var(--accent);color:var(--bg);font-size:13px;font-weight:700;padding:2px 10px;border-radius:999px;margin-bottom:14px}
+.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.2;margin:0;font-weight:800;letter-spacing:-.02em}
+.hero p{max-width:640px;color:var(--sub);margin:14px 0 0}
+nav.side{position:sticky;top:24px;align-self:start;padding-bottom:24px}
+nav.side ul{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+nav.side a{display:flex;gap:8px;padding:7px 14px;margin-left:-2px;border-left:2px solid transparent;color:var(--sub);text-decoration:none;font-size:14.5px;font-weight:500;line-height:1.45}
+nav.side a span{flex:none;font-variant-numeric:tabular-nums}
+nav.side a:hover,nav.side a.on{color:var(--accent);border-left-color:var(--accent);font-weight:700}
+main{padding-bottom:80px;min-width:0}
+section{margin-bottom:28px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px 28px 28px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.no{flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--bg);display:grid;place-items:center;font-weight:800;font-size:16px}
+.sec-head h2{margin:0;font-size:22px;line-height:1.35;letter-spacing:-.01em}
+.body{display:flex;flex-direction:column;gap:14px}
+.body p{margin:0;max-width:68ch}
+.body ul.list{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px 24px}
+.body ul.list li{position:relative;padding-left:20px;line-height:1.55}
+.body ul.list li::before{content:"";position:absolute;left:3px;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.note{padding:14px 18px;border-radius:10px;background:var(--accent-soft);border-left:4px solid var(--accent);font-weight:500;max-width:68ch}
+.example{border:1.5px dashed var(--line);border-radius:10px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start}
+.example .lab{flex:none;font-weight:700;color:var(--accent)}
+.example ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;min-width:0}
+.example li{color:var(--ink)}
+.sub{border-left:3px solid var(--line);padding-left:18px}
+.sub h3{margin:0 0 10px;font-size:17px;color:var(--accent)}
+.sub .body{gap:12px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{border-radius:12px;padding:16px 18px;border:1px solid transparent}
+.card h4{margin:0 0 6px;font-size:16px}
+.card p{font-size:14.5px;line-height:1.6}
+.card.must{background:var(--must-soft);color:var(--ink);border-color:var(--must)}
+.card.must h4{color:var(--must)}
+.card.direction{background:var(--dir-soft);border-color:var(--dir)}
+.card.direction h4{color:var(--dir)}
+.card.pref{background:var(--pref-soft);border-color:var(--pref)}
+.card.pref h4{color:var(--pref)}
+footer{grid-column:1/-1;border-top:1px solid var(--line);padding:20px 0 40px;color:var(--sub);font-size:13px}
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:0}
+  nav.side{position:static;padding:0 0 20px}
+  nav.side ul{display:flex;overflow-x:auto;border-left:0;border-bottom:2px solid var(--line)}
+  nav.side a{white-space:nowrap;border-left:0;border-bottom:2px solid transparent;margin:0 0 -2px;padding:8px 12px}
+  nav.side a:hover,nav.side a.on{border-bottom-color:var(--accent)}
+  section{padding:20px 18px 22px}
+  .cards{grid-template-columns:1fr}
+  .example{flex-direction:column;gap:6px}
+}
+@media print{nav.side{display:none}.layout{display:block}body{background:#fff}section{break-inside:avoid}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<header class="hero">
+  <span class="ver" id="ver"></span>
+  <h1 id="title"></h1>
+  <p id="intro"></p>
+</header>
+
+<nav class="side" aria-label="목차"><ul id="nav"></ul></nav>
+
+<main id="main"></main>
+
+<footer id="foot"></footer>
+</div>
+
+<!-- 내용 수정은 guide-data.js 에서 하세요 -->
+<script src="guide-data.js"></script>
+<script>
+(function(){
+  var D=window.GUIDE;
+  function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
+
+  function render(blocks,parent){
+    (blocks||[]).forEach(function(b){
+      var n;
+      if(b.type==="text"){
+        parent.appendChild(el("p",null,b.text));
+      }else if(b.type==="note"){
+        parent.appendChild(el("div","note",b.text));
+      }else if(b.type==="list"){
+        n=el("ul","list"); b.items.forEach(function(t){n.appendChild(el("li",null,t));}); parent.appendChild(n);
+      }else if(b.type==="example"){
+        n=el("div","example"); n.appendChild(el("span","lab",b.label||"예)"));
+        var ul=el("ul"); b.items.forEach(function(t){ul.appendChild(el("li",null,t));}); n.appendChild(ul); parent.appendChild(n);
+      }else if(b.type==="cards"){
+        n=el("div","cards");
+        b.items.forEach(function(c){var card=el("div","card "+(c.tone||"pref"));card.appendChild(el("h4",null,c.title));card.appendChild(el("p",null,c.desc));n.appendChild(card);});
+        parent.appendChild(n);
+      }else if(b.type==="sub"){
+        n=el("div","sub"); n.appendChild(el("h3",null,b.title));
+        var inner=el("div","body"); render(b.blocks,inner); n.appendChild(inner); parent.appendChild(n);
+      }
+    });
+  }
+
+  document.title=D.title+" "+D.version;
+  document.getElementById("ver").textContent=D.version;
+  document.getElementById("title").textContent=D.title;
+  document.getElementById("intro").textContent=D.intro;
+  document.getElementById("foot").textContent=D.title+" "+D.version;
+
+  var main=document.getElementById("main"), nav=document.getElementById("nav");
+  D.sections.forEach(function(s,i){
+    var num=i+1;
+    var li=el("li"), a=el("a"); a.href="#"+s.id;
+    a.appendChild(el("span",null,num+".")); a.appendChild(document.createTextNode(s.title)); li.appendChild(a); nav.appendChild(li);
+
+    var sec=el("section"); sec.id=s.id;
+    var head=el("div","sec-head"); head.appendChild(el("span","no",String(num))); head.appendChild(el("h2",null,s.title)); sec.appendChild(head);
+    var body=el("div","body"); render(s.blocks,body); sec.appendChild(body);
+    main.appendChild(sec);
+  });
+
+  var links=[].slice.call(nav.querySelectorAll("a"));
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting) links.forEach(function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id)});
+    });},{rootMargin:"-20% 0px -70% 0px"});
+    document.querySelectorAll("main section").forEach(function(s){io.observe(s)});
+  }
+})();
+</script>
+</body>
+</html>
