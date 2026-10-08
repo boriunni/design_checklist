@@ -7,20 +7,24 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{
-  --bg:#f5f4fa; --surface:#ffffff; --ink:#1e1b2e; --sub:#625f7a; --line:#dedcee;
-  --accent:#4f3fb3; --accent-soft:#ece9fa;
-  --must:#b0372b; --must-soft:#fbe9e6;
-  --dir:#8a5a12; --dir-soft:#fbf1dc;
-  --pref:#1f7557; --pref-soft:#e2f4ed;
+  --bg:#f4f2ec; --surface:#ffffff; --ink:#15131f; --sub:#5d5a6b; --line:#dedacc;
+  --accent:#664fff; --accent-soft:#ebe7ff; --on-accent:#ffffff;
+  --pop:#d9ff3f; --on-pop:#15131f;
+  --done:#664fff; --done-soft:#ebe7ff;
+  --warn:#15131f; --warn-soft:#d9ff3f;
+  --must:#e5384f; --must-soft:#ffe4e8;
+  --dir:#664fff; --dir-soft:#ebe7ff;
+  --pref:#506b00; --pref-soft:#eefcb0;
   --font:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#13111d; --surface:#1c1a2b; --ink:#ebe9f6; --sub:#a29fba; --line:#302d47;
-    --accent:#a99cf5; --accent-soft:#2a2550;
-    --must:#f19a8f; --must-soft:#3d1f1c;
-    --dir:#e6b862; --dir-soft:#3a2f17;
-    --pref:#6fd1ab; --pref-soft:#173326;
+    --bg:#100e1a; --surface:#1a1730; --ink:#f2f0fb; --sub:#aaa7c6; --line:#2e2a50;
+    --accent:#9d8bff; --accent-soft:#2b2463; --on-accent:#12101f;
+    --done:#9d8bff; --done-soft:#2b2463;
+    --must:#ff8a9a; --must-soft:#3f1a24;
+    --dir:#b3a5ff; --dir-soft:#2b2463;
+    --pref:#d9ff3f; --pref-soft:#2a3300;
   }
 }
 *{box-sizing:border-box}
@@ -78,6 +82,21 @@ footer{grid-column:1/-1;border-top:1px solid var(--line);padding:20px 0 40px;col
 }
 @media print{nav.side{display:none}.layout{display:block}body{background:#fff}section{break-inside:avoid}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* ---- 비비드 컬러 테마 (메인 보라색 = --accent, 포인트 = --pop) ---- */
+body{overflow-x:hidden}
+header.hero{position:relative}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(60% 50% at 12% 105%,rgba(255,150,210,.50),rgba(255,150,210,0) 70%),
+  radial-gradient(70% 55% at 88% 105%,rgba(150,128,255,.45),rgba(150,128,255,0) 70%),
+  radial-gradient(55% 40% at 50% -5%,rgba(150,128,255,.20),rgba(150,128,255,0) 70%)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body::before{opacity:.55}}
+@media print{body::before{display:none}}
+.hero .ver{background:var(--pop);color:var(--on-pop);letter-spacing:.04em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.note{background:var(--pop);color:var(--on-pop);font-weight:600}
+.no{background:var(--accent);color:var(--on-accent)}
+.note{border-left:4px solid var(--accent)}
 </style>
 </head>
 <body>
@@ -128,7 +147,8 @@ footer{grid-column:1/-1;border-top:1px solid var(--line);padding:20px 0 40px;col
 
   document.title=D.title+" "+D.version;
   document.getElementById("ver").textContent=D.version;
-  document.getElementById("title").textContent=D.title;
+  (function(){var t=document.getElementById("title"),i=D.title.lastIndexOf(" ");
+  if(i>0){t.appendChild(document.createTextNode(D.title.slice(0,i+1)));var em=document.createElement("em");em.textContent=D.title.slice(i+1);t.appendChild(em);}else{t.textContent=D.title;}})();
   document.getElementById("intro").textContent=D.intro;
   document.getElementById("foot").textContent=D.title+" "+D.version;
 

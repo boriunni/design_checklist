@@ -7,16 +7,24 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{
-  --bg:#f3f6f7; --surface:#ffffff; --ink:#18232d; --sub:#5a6772; --line:#d9e0e4;
-  --accent:#16607a; --accent-soft:#e1eff4; --done:#1f8a5b; --done-soft:#e3f4ec;
-  --warn:#8a5a12; --warn-soft:#fbf1dc;
+  --bg:#f4f2ec; --surface:#ffffff; --ink:#15131f; --sub:#5d5a6b; --line:#dedacc;
+  --accent:#664fff; --accent-soft:#ebe7ff; --on-accent:#ffffff;
+  --pop:#d9ff3f; --on-pop:#15131f;
+  --done:#664fff; --done-soft:#ebe7ff;
+  --warn:#15131f; --warn-soft:#d9ff3f;
+  --must:#e5384f; --must-soft:#ffe4e8;
+  --dir:#664fff; --dir-soft:#ebe7ff;
+  --pref:#506b00; --pref-soft:#eefcb0;
   --font:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#10171c; --surface:#18222a; --ink:#e8eef2; --sub:#9aa8b3; --line:#2a3944;
-    --accent:#6cc0dc; --accent-soft:#17323d; --done:#5fd0a0; --done-soft:#173326;
-    --warn:#e6b862; --warn-soft:#3a2f17;
+    --bg:#100e1a; --surface:#1a1730; --ink:#f2f0fb; --sub:#aaa7c6; --line:#2e2a50;
+    --accent:#9d8bff; --accent-soft:#2b2463; --on-accent:#12101f;
+    --done:#9d8bff; --done-soft:#2b2463;
+    --must:#ff8a9a; --must-soft:#3f1a24;
+    --dir:#b3a5ff; --dir-soft:#2b2463;
+    --pref:#d9ff3f; --pref-soft:#2a3300;
   }
 }
 *{box-sizing:border-box}
@@ -85,6 +93,24 @@ footer{grid-column:1/-1;border-top:1px solid var(--line);padding:20px 0 40px;col
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
 .hero p:empty{display:none}
+
+/* ---- 비비드 컬러 테마 (메인 보라색 = --accent, 포인트 = --pop) ---- */
+body{overflow-x:hidden}
+header.hero{position:relative}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(60% 50% at 12% 105%,rgba(255,150,210,.50),rgba(255,150,210,0) 70%),
+  radial-gradient(70% 55% at 88% 105%,rgba(150,128,255,.45),rgba(150,128,255,0) 70%),
+  radial-gradient(55% 40% at 50% -5%,rgba(150,128,255,.20),rgba(150,128,255,0) 70%)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body::before{opacity:.55}}
+@media print{body::before{display:none}}
+.hero .ver{background:var(--pop);color:var(--on-pop);letter-spacing:.04em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.note{background:var(--pop);color:var(--on-pop);font-weight:600}
+.tag.must{background:var(--accent);color:var(--on-accent)}
+.tag.opt{background:var(--pop);color:var(--on-pop)}
+.bar i{background:var(--accent)}
+.progress b{color:var(--accent)}
+label.item input:checked + .box svg{stroke:var(--on-accent)}
 </style>
 </head>
 <body>
@@ -137,7 +163,8 @@ footer{grid-column:1/-1;border-top:1px solid var(--line);padding:20px 0 40px;col
 
   document.title=D.title+" "+D.version;
   document.getElementById("ver").textContent=D.version;
-  document.getElementById("title").textContent=D.title;
+  (function(){var t=document.getElementById("title"),i=D.title.lastIndexOf(" ");
+  if(i>0){t.appendChild(document.createTextNode(D.title.slice(0,i+1)));var em=document.createElement("em");em.textContent=D.title.slice(i+1);t.appendChild(em);}else{t.textContent=D.title;}})();
   document.getElementById("intro").textContent=D.intro;
   document.getElementById("foot").textContent=D.title+" "+D.version+" · 체크 상태는 이 브라우저에만 저장됩니다.";
 
