@@ -7,24 +7,24 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{
-  --bg:#ffffff; --surface:#f5f5f8; --raise:#ffffff; --ink:#1b1a24; --sub:#6a6877; --line:#dedde8;
-  --accent:#664fff; --accent-soft:#eeebff; --on-accent:#ffffff;
-  --done:#664fff; --done-soft:#eeebff;
-  --warn:#4a4858; --warn-soft:#e6e5ee;
-  --must:#664fff; --must-soft:#eeebff;
-  --dir:#664fff; --dir-soft:#eeebff;
-  --pref:#4a4858; --pref-soft:#e6e5ee;
+  --bg:#ffffff; --surface:#f7f7fa; --raise:#ffffff; --ink:#232230; --sub:#6c6b7b; --line:#e5e4ee; --check:#b9b8c9;
+  --accent:#664fff; --accent-text:#4f3fc4; --accent-soft:#f0eeff; --accent-mid:#b7aefc; --on-accent:#ffffff;
+  --done:#664fff; --done-soft:#f0eeff;
+  --warn:#6c6b7b; --warn-soft:#f7f7fa;
+  --must:#664fff; --must-soft:#f0eeff;
+  --dir:#664fff; --dir-soft:#f0eeff;
+  --pref:#6c6b7b; --pref-soft:#f7f7fa;
   --font:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#121118; --surface:#1c1b27; --raise:#262534; --ink:#f0eff7; --sub:#a9a7bd; --line:#34324a;
-    --accent:#a597ff; --accent-soft:#2a2650; --on-accent:#14121f;
-    --done:#a597ff; --done-soft:#2a2650;
-    --warn:#cfcde0; --warn-soft:#2c2b3a;
-    --must:#a597ff; --must-soft:#2a2650;
-    --dir:#a597ff; --dir-soft:#2a2650;
-    --pref:#cfcde0; --pref-soft:#2c2b3a;
+    --bg:#121118; --surface:#1b1a25; --raise:#242331; --ink:#eeedf6; --sub:#a9a7bd; --line:#32304a; --check:#5a5877;
+    --accent:#a597ff; --accent-text:#bdb3ff; --accent-soft:#272349; --accent-mid:#5b50a8; --on-accent:#14121f;
+    --done:#a597ff; --done-soft:#272349;
+    --warn:#a9a7bd; --warn-soft:#1b1a25;
+    --must:#a597ff; --must-soft:#272349;
+    --dir:#a597ff; --dir-soft:#272349;
+    --pref:#a9a7bd; --pref-soft:#1b1a25;
   }
 }
 *{box-sizing:border-box}
@@ -94,14 +94,21 @@ footer{grid-column:1/-1;border-top:1px solid var(--line);padding:20px 0 40px;col
 
 .hero p:empty{display:none}
 
-/* ---- 테마: 화이트 + 라이트그레이 + 시그니처 퍼플 (--accent) ---- */
-.hero .ver{background:var(--accent);color:var(--on-accent);letter-spacing:.04em}
+/* ---- 테마: 화이트 + 라이트그레이 + 시그니처 퍼플 (정돈된 톤) ---- */
+.hero .ver{background:var(--accent-soft);color:var(--accent-text);font-weight:700;letter-spacing:.03em}
+.hero h1{font-weight:700}
 .hero h1 em{font-style:normal;color:var(--accent)}
-.note{background:var(--surface);color:var(--ink);font-weight:500;border-left:4px solid var(--accent)}
-.tag.must{background:var(--accent);color:var(--on-accent)}
+.hero p{color:var(--sub)}
+.note{background:var(--surface);color:var(--ink);font-weight:400;border-left:3px solid var(--accent)}
+nav.side a:hover,nav.side a.on{color:var(--accent-text)}
+.tag.must{background:var(--accent-soft);color:var(--accent-text)}
+.tag.opt{background:var(--surface);color:var(--sub);border:1px solid var(--line)}
+.group h3{color:var(--ink);font-size:15.5px;display:flex;align-items:center;gap:8px}
+.group h3::before{content:"";width:4px;height:14px;border-radius:2px;background:var(--accent)}
+.group.final{background:var(--raise);border:1.5px solid var(--accent)}
+.box{border-color:var(--check)}
 .bar i{background:var(--accent)}
-.progress b{color:var(--accent)}
-.group.final{background:var(--raise)}
+.progress b{color:var(--accent-text)}
 label.item input:checked + .box svg{stroke:var(--on-accent)}
 </style>
 </head>
